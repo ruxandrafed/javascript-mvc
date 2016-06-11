@@ -8,17 +8,33 @@ requirejs.config({
   }
 });
 
-require(["jquery", "materialize"],
+require(["jquery", "materialize", "api"],
 
-  function($) {
+  function($, materialize, api) {
+
+    api.getCategories(
+      function(data) { console.log(data); }
+    );
+
+    api.getAllProducts(
+      function(data) { console.log(data); }
+    );
+
+    api.getAllProductsForCategory('20001',
+      function(data) { console.log(data); }
+    );
+
+    api.getProductInfo('10419361',
+      function(data) { console.log(data); }
+    );
+
     $(document).ready(function(){
-
       // modals initialization
       for (ii=1; ii<=24; ii++) {
         $('.modal-trigger-' + ii).leanModal();
       }
-
     });
+
   }
 
 );
