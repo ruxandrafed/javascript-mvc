@@ -20,7 +20,7 @@
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="http://www.github.com/ruxandrafed"><i class="material-icons">code</i></a></li>
-                    <li><a href="www.ruxandrafediuc.com"><i class="material-icons">perm_identity</i></a></li>
+                    <li><a href="http://www.ruxandrafediuc.com"><i class="material-icons">perm_identity</i></a></li>
                 </ul>
             </div>
         </nav>
@@ -65,6 +65,13 @@
                             <span class="card-title">{{name}}</span>
                           </div>
                           <div class="card-action">
+                            <div class="price">
+                              {{#if isOnSale }}
+                                <strike>${{regularPrice}}</strike> <span style="color:red">${{ salePrice }}</span>
+                              {{else}}
+                                ${{regularPrice}}
+                              {{/if}}
+                            </div>
                             <button class="btn btn-flat indigo darken-4 waves-effect waves-light white-text modal-trigger-{{sku}}" data-target="modal-{{sku}}">Details</button>
                           </div>
                         </div>

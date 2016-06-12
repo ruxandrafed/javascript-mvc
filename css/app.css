@@ -13,6 +13,19 @@
   overflow: auto;
 }
 
+.products-list .card .card-action {
+  text-align: center;
+  padding: 10px;
+}
+
+.products-list .card .card-action .price {
+  margin-bottom: 5px;
+}
+
+.products-list .card .card-action button {
+  font-size: 10px;
+}
+
 .products-list .modal img {
   max-width: 50%;
   float: left;
