@@ -47,24 +47,24 @@ define("Controller", ["api", "Product", "Category", "View"], function(api, Produ
             products.push(new Product(productData));
           });
           View.generateProductsHTML(products);
-          _activateModals(products);
+          _activateModals();
         }
       );
     }
   }
 
-  function _activateModals(products) {
-    $(document).ready(function(){
-      for (ii=0; ii<products.length; ii++) {
-        $('.modal-trigger-' + products[ii]["sku"]).leanModal();
-      }
+  function _activateModals() {
+    $(function() {
+      $("[class*='modal-trigger-']").leanModal();
     });
   }
 
   function _addCategoryFilterListeners() {
-    $(".categories-list li").on("click", function() {
-      var categoryId = $(this).data("index");
-      filterProducts(categoryId);
+    $(function() {
+      $(".category-filter").on("click", function() {
+        var categoryId = $(this).data("index");
+        filterProducts(categoryId);
+      });
     });
   }
 
