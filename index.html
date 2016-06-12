@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+    <link rel="stylesheet" href="css/app.css">
   </head>
 
   <body>
@@ -33,106 +34,68 @@
                 <div id="aside">
                   <h5>Categories</h5>
                   <div class="divider"></div>
-                  <ul>
-                    <li><a href="#!">one</a></li>
-                    <li><a href="#!">two</a></li>
-                    <li><a href="#!">three</a></li>
+                  <ul class="categories-list">
+                    <script id="categories-template" type="x-handlebars-template" />​
+                      <li><a href="#">All products</a></li>
+                      {{#each this}}
+                        <li data-index="{{id}}"><a href="#">{{name}} ({{productCount}})</a></li>
+                      {{/each}}
+                    </script> 
                   </ul>
                 </div>
 
             </div>
 
-            <div class="col l9">
+            <div class="all-products col l9">
               <h5>Our Products</h5>
 
               <div class="divider"></div>
 
               <div class="row">
-                <div class="col l3 m6 s12">
-                  <div class="card">
-                    <div class="card-content">
-                      <span class="card-title">Card Title</span>
-                      <p>I am a very simple card. I am good at containing small bits of information.</p>
-                    </div>
-                    <div class="card-action">
-                      <button class="btn btn-flat indigo darken-4 waves-effect waves-light white-text modal-trigger-1" data-target="modal-1">Details</button>
-                    </div>
-                  </div>
-                  <!-- Modal Structure -->
-                  <div id="modal-1" class="modal modal-fixed-footer">
-                    <div class="modal-content">
-                      <h4>Modal Header</h4>
-                      <p>A bunch of text</p>
-                    </div>
-                    <div class="modal-footer">
-                      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col l3 m6 s12">
-                  <div class="card">
-                    <div class="card-content">
-                      <span class="card-title">Card Title</span>
-                      <p>I am a very simple card. I am good at containing small bits of information.</p>
-                    </div>
-                    <div class="card-action">
-                      <button class="btn btn-flat indigo darken-4 waves-effect waves-light white-text modal-trigger-2" data-target="modal-2">Details</button>
-                    </div>
-                  </div>
-                  <!-- Modal Structure -->
-                  <div id="modal-2" class="modal modal-fixed-footer">
-                    <div class="modal-content">
-                      <h4>Modal Header</h4>
-                      <p>A bunch of text</p>
-                    </div>
-                    <div class="modal-footer">
-                      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col l3 m6 s12">
-                  <div class="card">
-                    <div class="card-content">
-                      <span class="card-title">Card Title</span>
-                      <p>I am a very simple card. I am good at containing small bits of information.</p>
-                    </div>
-                    <div class="card-action">
-                      <button class="btn btn-flat indigo darken-4 waves-effect waves-light white-text modal-trigger-3" data-target="modal-3">Details</button>
-                    </div>
-                  </div>
-                  <!-- Modal Structure -->
-                  <div id="modal-3" class="modal modal-fixed-footer">
-                    <div class="modal-content">
-                      <h4>Modal Header</h4>
-                      <p>A bunch of text</p>
-                    </div>
-                    <div class="modal-footer">
-                      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col l3 m6 s12">
-                  <div class="card">
-                    <div class="card-content">
-                      <span class="card-title">Card Title</span>
-                      <p>I am a very simple card. I am good at containing small bits of information.</p>
-                    </div>
-                    <div class="card-action">
-                      <button class="btn btn-flat indigo darken-4 waves-effect waves-light white-text modal-trigger-4" data-target="modal-4">Details</button>
-                    </div>
-                  </div>
-                  <!-- Modal Structure -->
-                  <div id="modal-4" class="modal modal-fixed-footer">
-                    <div class="modal-content">
-                      <h4>Modal Header</h4>
-                      <p>A bunch of text</p>
-                    </div>
-                    <div class="modal-footer">
-                      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
+
+                <ul class="products-list"></ul>
+
+                <script id="products-template" type="x-handlebars-template" />​
+                  {{#each this}}
+                    <li data-index="{{sku}}">
+                      <div class="col l3 m6 s12">
+                        <div class="card modal-trigger-{{sku}}" data-target="modal-{{sku}}">
+                          <div class="card-content">
+                            <img src="{{thumbnailImage}}">
+                            <span class="card-title">{{name}}</span>
+                          </div>
+                          <div class="card-action">
+                            <button class="btn btn-flat indigo darken-4 waves-effect waves-light white-text modal-trigger-{{sku}}" data-target="modal-{{sku}}">Details</button>
+                          </div>
+                        </div>
+
+                        <!-- Modal Structure -->
+                        <div id="modal-{{sku}}" class="modal modal-fixed-footer">
+                          <div class="modal-content">
+                            <h4>{{name}}</h4>
+                            {{#if highResImage }}
+                              <img src="{{highResImage}}">
+                            {{else}}
+                              <img src="{{thumbnailImage}}">
+                            {{/if}}
+                            <p>{{shortDescription}}</p>
+                            <p>SKU: {{sku}}</p>
+                            <h5>Price:
+                              {{#if isOnSale }}
+                                <strike>${{regularPrice}}</strike> <span style="color:red">${{ salePrice }}</span>
+                              {{else}}
+                                ${{regularPrice}}
+                              {{/if}}
+                            </h5>
+                          </div>
+                          <div class="modal-footer">
+                            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  {{/each}}
+                </script> 
 
             </div>
 

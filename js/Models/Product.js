@@ -5,6 +5,7 @@ define("Product", ["helpers"], function(helpers){
     "name",
     "productUrl",
     "regularPrice",
+    "salePrice",
     "shortDescription",
     "sku",
     "thumbnailImage"
@@ -12,6 +13,9 @@ define("Product", ["helpers"], function(helpers){
 
   function Product(productDetails){
     helpers.mapProperties(productDetails, this, propsToKeep);
+    if (productDetails.salePrice && productDetails.regularPrice) {
+      this.isOnSale = productDetails.salePrice < productDetails.regularPrice;
+    }
   }
 
   return Product;

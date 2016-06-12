@@ -1,0 +1,24 @@
+.products-list .card {
+  cursor: pointer;
+}
+
+.products-list .card .card-title {
+  font-size: 10px;
+  line-height: 1;
+  font-weight: bold;
+}
+
+.products-list .card .card-content {
+  height: 300px;
+  overflow: auto;
+}
+
+.products-list .modal img {
+  max-width: 50%;
+  float: left;
+  margin-right: 5%;
+}
+
+#aside .categories-list a {
+  font-size: 10px;
+}
