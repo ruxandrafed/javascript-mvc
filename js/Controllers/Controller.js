@@ -1,26 +1,24 @@
-define("Controller", ["api", "Product", "Category", "View"], function(api, Product, Category, View){
+define("Controller", ["Api", "Product", "Category", "View"], function(Api, Product, Category, View){
 
   function init(){
 
-    api.getAllProducts(
+    Api.getAllProducts(
       function(data) {
         var products = [];
         data.products.forEach(function(productData) {
           products.push(new Product(productData));
         });
         View.generateProductsHTML(products);
-        _activateModals(products);
       }
     );
 
-    api.getCategories(
+    Api.getCategories(
       function(data) {
         var categories = [];
         data.subCategories.forEach(function(categoryData) {
           categories.push(new Category(categoryData));
         });
         View.generateCategoriesHTML(categories);
-        _addCategoryFilterListeners();
       }
     );
   }
@@ -28,49 +26,37 @@ define("Controller", ["api", "Product", "Category", "View"], function(api, Produ
   function filterProducts(categoryId = null) {
 
     if (categoryId) {
-      api.getAllProductsForCategory(categoryId,
+      Api.getAllProductsForCategory(categoryId,
         function(data) {
           var products = [];
           data.products.forEach(function(productData) {
             products.push(new Product(productData));
           });
           View.generateProductsHTML(products);
-          _activateModals(products);
         }
       );
     }
     else {
-      api.getAllProducts(
+      Api.getAllProducts(
         function(data) {
           var products = [];
           data.products.forEach(function(productData) {
             products.push(new Product(productData));
           });
           View.generateProductsHTML(products);
-          _activateModals();
         }
       );
     }
   }
 
-  function _activateModals() {
-    $(function() {
-      $("[class*='modal-trigger-']").leanModal();
-    });
-  }
-
-  function _addCategoryFilterListeners() {
-    $(function() {
-      $(".category-filter").on("click", function() {
-        var categoryId = $(this).data("index");
-        filterProducts(categoryId);
-      });
-    });
+  function viewProduct(productSKU) {
+    View.openProductModal(productSKU);
   }
 
   return {
     init: init,
-    filterProducts: filterProducts
+    filterProducts: filterProducts,
+    viewProduct: viewProduct
   };
 
 });

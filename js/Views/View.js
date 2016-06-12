@@ -16,6 +16,15 @@ define("View", ["jquery", "Handlebars"], function($, Handlebars){
     categoriesList.append(categoryTemplate(data));
   }
 
+  function openProductModal(productSKU) {
+    $(function() {
+      setTimeout(200); // wait for api & product rendering
+      if (productSKU) {
+        $("#modal-" + productSKU).openModal();
+      }
+    });
+  }
+
   Handlebars.registerHelper('uri', function(string) {
     string = string.replace(/[&,\/"'()]/g, '').replace(/\s+/g, '-').toLowerCase();
     return string;
@@ -23,7 +32,8 @@ define("View", ["jquery", "Handlebars"], function($, Handlebars){
 
   return {
     generateProductsHTML: generateProductsHTML,
-    generateCategoriesHTML: generateCategoriesHTML
+    generateCategoriesHTML: generateCategoriesHTML,
+    openProductModal: openProductModal
   };
 
 });

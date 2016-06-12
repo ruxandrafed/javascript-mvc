@@ -1,4 +1,4 @@
-define("api", ["jquery"], function($) {
+define("Api", ["jquery"], function($) {
 
   function getCategories(successCallback) {
     return _getData({

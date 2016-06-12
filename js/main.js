@@ -12,15 +12,15 @@ requirejs.config({
   },
   "shim": {
     "materialize": ["jquery", "hammerjs"],
-    "Controller": ["api"]
+    "Controller": ["Api"]
   }
 });
 
-require(["jquery", "materialize", "Handlebars", "api", "Controller", "Product", "Category", "View"],
+require(["jquery", "materialize", "Handlebars", "Api", "Router", "Controller", "Product", "Category", "View"],
 
-  function($, materialize, Handlebars, api, Controller, Product, Category, View) {
+  function($, materialize, Handlebars, Api, Router, Controller, Product, Category, View) {
 
-    Controller.init();
+    Router.startRouting();
 
   }
 

@@ -36,9 +36,9 @@
                   <div class="divider"></div>
                   <ul class="categories-list">
                     <script id="categories-template" type="x-handlebars-template" />​
-                      <li><a href="">All products</a></li>
+                      <li class="category-filter"><a href="#">All products</a></li>
                       {{#each this}}
-                        <li class="category-filter" data-index="{{id}}"><a href="category/{{id}}/{{uri name}}">{{name}} ({{productCount}})</a></li>
+                        <li class="category-filter" data-index="{{id}}"><a href="#category--{{id}}--{{uri name}}">{{name}} ({{productCount}})</a></li>
                       {{/each}}
                     </script> 
                   </ul>
@@ -59,7 +59,7 @@
                   {{#each this}}
                     <li data-index="{{sku}}">
                       <div class="col l3 m6 s12">
-                        <a href="product/{{sku}}/{{uri name}}">
+                        <a href="#product--{{sku}}--{{uri name}}">
                           <div class="card modal-trigger-{{sku}}" data-target="modal-{{sku}}">
                             <div class="card-content">
                               <img src="{{thumbnailImage}}">
