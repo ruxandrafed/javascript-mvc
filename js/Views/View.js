@@ -1,40 +1,23 @@
-define("View", ["jquery", "Handlebars"], function($, Handlebars){
+define("View", ["jquery", "Templates"], function($, Templates){
 
-  var productsList = $('.all-products .products-list');
-  var categoriesList = $('.categories-list');
+  var productList = $('.all-products .products-list');
+  var categoryList = $('.categories-list');
   var productDetails = $('.product-details');
 
   function generateProductsHTML(data) {
-    productsList.empty();
-    var productTemplateScript = $("#products-template").html();
-    var productTemplate = Handlebars.compile(productTemplateScript);
-    productsList.append (productTemplate(data));
+    productList.empty();
+    productList.append (Templates.productListTemplate(data));
   }
 
   function generateCategoriesHTML(data) {
-    var categoryTemplateScript = $("#categories-template").html();
-    var categoryTemplate = Handlebars.compile (categoryTemplateScript);
-    categoriesList.append(categoryTemplate(data));
+    categoryList.append(Templates.categoryListTemplate(data));
   }
 
   function generateProductInfo(data) {
-    var productTemplateScript = $("#product-modal-template").html();
-    var productTemplate = Handlebars.compile(productTemplateScript);
-    productDetails.append(productTemplate(data));
+    productDetails.append(Templates.productTemplate(data));
+    setTimeout(100); // enough time to build high res image path & fetch it
     $("#modal-" + data.sku).openModal();
   }
-
-  // Builds category string URLs
-  Handlebars.registerHelper('uri', function(string) {
-    string = string.replace(/[&,\/"'()]/g, '').replace(/\s+/g, '-').toLowerCase();
-    return string;
-  });
-
-  // Gets the path for a higher resolution image as product details only returns thumbnail
-  Handlebars.registerHelper('fetchHighResImage', function(thumbnailImagePath) {
-    thumbnailImagePath = thumbnailImagePath.replace(/55x55/g, '300x300');
-    return thumbnailImagePath;
-  });
 
   return {
     generateProductsHTML: generateProductsHTML,

@@ -29,83 +29,20 @@
     <!-- main content -->
     <div class="container">
         <div class="row">
-
             <div class="col l2 m4 s12">
                 <div id="aside">
                   <h5>Categories</h5>
                   <div class="divider"></div>
-                  <ul class="categories-list">
-                    <script id="categories-template" type="x-handlebars-template" />​
-                      <li class="category-filter"><a href="#">All products</a></li>
-                      {{#each this}}
-                        <li class="category-filter" data-index="{{id}}"><a href="#category--{{id}}--{{uri name}}">{{name}} ({{productCount}})</a></li>
-                      {{/each}}
-                    </script> 
-                  </ul>
+                  <ul class="categories-list"></ul>
                 </div>
-
             </div>
-
             <div class="all-products col l9">
               <h5>Our Products</h5>
-
               <div class="divider"></div>
-
               <div class="row">
-
                 <ul class="products-list"></ul>
-
                 <div class="product-details"></div>
-
-                <script id="product-modal-template" type="x-handlebars-template" />​
-                  <div id="modal-{{sku}}" class="modal modal-fixed-footer">
-                    <div class="modal-content">
-                      <h4>{{name}}</h4>
-                        <img src="{{fetchHighResImage thumbnailImage}}">
-                      <p>{{shortDescription}}</p>
-                      <p>SKU: {{sku}}</p>
-                      <h5>Price:
-                        {{#if isOnSale }}
-                          <strike>${{regularPrice}}</strike> <span style="color:red">${{ salePrice }}</span>
-                        {{else}}
-                          ${{regularPrice}}
-                        {{/if}}
-                      </h5>
-                    </div>
-                    <div class="modal-footer">
-                      <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
-                    </div>
-                  </div>
-                </script> 
-
-                <script id="products-template" type="x-handlebars-template" />​
-                  {{#each this}}
-                    <li data-index="{{sku}}">
-                      <div class="col l3 m6 s12">
-                        <a href="#product--{{sku}}--{{uri name}}">
-                          <div class="card modal-trigger-{{sku}}" data-target="modal-{{sku}}">
-                            <div class="card-content">
-                              <img src="{{thumbnailImage}}">
-                              <span class="card-title">{{name}}</span>
-                            </div>
-                            <div class="card-action">
-                              <div class="price">
-                                {{#if isOnSale }}
-                                  <strike>${{regularPrice}}</strike> <span style="color:red">${{ salePrice }}</span>
-                                {{else}}
-                                  ${{regularPrice}}
-                                {{/if}}
-                              </div>
-                              <button class="btn btn-flat indigo darken-4 waves-effect waves-light white-text modal-trigger-{{sku}}" data-target="modal-{{sku}}">Details</button>
-                            </div>
-                          </div>
-                        </a>
-                    </li>
-                  {{/each}}
-                </script> 
-
             </div>
-
         </div>
     </div>
 

@@ -8,7 +8,8 @@ requirejs.config({
     'Controller': 'Controllers/Controller',
     'Product': 'Models/Product',
     'Category': 'Models/Category',
-    'View': 'Views/View'
+    'View': 'Views/View',
+    'Templates': 'Templates/Templates'
   },
   "shim": {
     "materialize": ["jquery", "hammerjs"],
@@ -16,9 +17,9 @@ requirejs.config({
   }
 });
 
-require(["jquery", "materialize", "Handlebars", "Api", "Router", "Controller", "Product", "Category", "View"],
+require(["jquery", "materialize", "Handlebars", "Api", "Router", "Controller", "Product", "Category", "View", "Templates"],
 
-  function($, materialize, Handlebars, Api, Router, Controller, Product, Category, View) {
+  function($, materialize, Handlebars, Api, Router, Controller, Product, Category, View, Templates) {
 
     Router.startRouting();
 

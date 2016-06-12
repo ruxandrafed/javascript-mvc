@@ -11,11 +11,9 @@ define("Router", ["Controller"], function(Controller){
 
   function hashCheck(){
     if (window.location.hash != currentHash){
-      if (window.location.hash.split("#")[1]) {
+      if (window.location.hash.split("#")[1]) { // if a product or category url
         var urlInfo = window.location.hash.split("#")[1].split("--");
-        var urlType = urlInfo[0];
-        var urlId = urlInfo[1];
-        loadController(urlType, urlId);
+        loadController(urlInfo[0], urlInfo[1]);
       }
       currentHash = window.location.hash;
     }
