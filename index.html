@@ -16,7 +16,7 @@
     <div class="navbar-fixed">
         <nav class="indigo darken-4">
             <div class="nav-wrapper container">
-                <a href="" class="brand-logo">&nbsp;Best Buy</a>
+                <a href="#" class="brand-logo">&nbsp;Best Buy</a>
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="http://www.github.com/ruxandrafed"><i class="material-icons">code</i></a></li>
@@ -55,6 +55,29 @@
 
                 <ul class="products-list"></ul>
 
+                <div class="product-details"></div>
+
+                <script id="product-modal-template" type="x-handlebars-template" />​
+                  <div id="modal-{{sku}}" class="modal modal-fixed-footer">
+                    <div class="modal-content">
+                      <h4>{{name}}</h4>
+                        <img src="{{fetchHighResImage thumbnailImage}}">
+                      <p>{{shortDescription}}</p>
+                      <p>SKU: {{sku}}</p>
+                      <h5>Price:
+                        {{#if isOnSale }}
+                          <strike>${{regularPrice}}</strike> <span style="color:red">${{ salePrice }}</span>
+                        {{else}}
+                          ${{regularPrice}}
+                        {{/if}}
+                      </h5>
+                    </div>
+                    <div class="modal-footer">
+                      <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
+                    </div>
+                  </div>
+                </script> 
+
                 <script id="products-template" type="x-handlebars-template" />​
                   {{#each this}}
                     <li data-index="{{sku}}">
@@ -77,31 +100,6 @@
                             </div>
                           </div>
                         </a>
-
-                        <!-- Modal Structure -->
-                        <div id="modal-{{sku}}" class="modal modal-fixed-footer">
-                          <div class="modal-content">
-                            <h4>{{name}}</h4>
-                            {{#if highResImage }}
-                              <img src="{{highResImage}}">
-                            {{else}}
-                              <img src="{{thumbnailImage}}">
-                            {{/if}}
-                            <p>{{shortDescription}}</p>
-                            <p>SKU: {{sku}}</p>
-                            <h5>Price:
-                              {{#if isOnSale }}
-                                <strike>${{regularPrice}}</strike> <span style="color:red">${{ salePrice }}</span>
-                              {{else}}
-                                ${{regularPrice}}
-                              {{/if}}
-                            </h5>
-                          </div>
-                          <div class="modal-footer">
-                            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
-                          </div>
-                        </div>
-                      </div>
                     </li>
                   {{/each}}
                 </script> 

@@ -26,7 +26,7 @@
   font-size: 10px;
 }
 
-.products-list .modal img {
+.product-details .modal-content img {
   max-width: 50%;
   float: left;
   margin-right: 5%;

@@ -50,7 +50,14 @@ define("Controller", ["Api", "Product", "Category", "View"], function(Api, Produ
   }
 
   function viewProduct(productSKU) {
-    View.openProductModal(productSKU);
+    if (productSKU) {
+      Api.getProductInfo(productSKU,
+        function(data) {
+          var product = new Product(data);
+          View.generateProductInfo(product);
+        }
+      );
+    }
   }
 
   return {

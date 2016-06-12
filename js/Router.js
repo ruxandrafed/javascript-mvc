@@ -1,6 +1,5 @@
 define("Router", ["Controller"], function(Controller){
-  var routes = [{hash:'#list', controller:'ListController'},
-                {hash:'#add',  controller:'AddController'}];
+
   var defaultRoute = '';
   var currentHash = '';
 
@@ -12,10 +11,12 @@ define("Router", ["Controller"], function(Controller){
 
   function hashCheck(){
     if (window.location.hash != currentHash){
-      var urlInfo = window.location.hash.split("#")[1].split("--");
-      var urlType = urlInfo[0];
-      var urlId = urlInfo[1];
-      loadController(urlType, urlId);
+      if (window.location.hash.split("#")[1]) {
+        var urlInfo = window.location.hash.split("#")[1].split("--");
+        var urlType = urlInfo[0];
+        var urlId = urlInfo[1];
+        loadController(urlType, urlId);
+      }
       currentHash = window.location.hash;
     }
   }
