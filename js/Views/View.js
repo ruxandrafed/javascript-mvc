@@ -16,6 +16,11 @@ define("View", ["jquery", "Handlebars"], function($, Handlebars){
     categoriesList.append(categoryTemplate(data));
   }
 
+  Handlebars.registerHelper('uri', function(string) {
+    string = string.replace(/[&,\/"'()]/g, '').replace(/\s+/g, '-').toLowerCase();
+    return string;
+  });
+
   return {
     generateProductsHTML: generateProductsHTML,
     generateCategoriesHTML: generateCategoriesHTML
