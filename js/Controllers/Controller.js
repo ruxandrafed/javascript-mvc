@@ -1,5 +1,9 @@
 define("Controller", ["Api", "Product", "Category", "View"], function(Api, Product, Category, View){
 
+  PRODUCTLISTLOCATION = $('.all-products .products-list');
+  CATEGORYLISTLOCATION = $('.categories-list');
+  PRODUCTDETAILSLOCATION = $('.product-details');
+
   function init(){
 
     Api.getAllProducts(
@@ -8,7 +12,7 @@ define("Controller", ["Api", "Product", "Category", "View"], function(Api, Produ
         data.products.forEach(function(productData) {
           products.push(new Product(productData));
         });
-        View.generateProductsHTML(products);
+        View.generateProductsHTML(products, PRODUCTLISTLOCATION);
       }
     );
 
@@ -18,7 +22,7 @@ define("Controller", ["Api", "Product", "Category", "View"], function(Api, Produ
         data.subCategories.forEach(function(categoryData) {
           categories.push(new Category(categoryData));
         });
-        View.generateCategoriesHTML(categories);
+        View.generateCategoriesHTML(categories, CATEGORYLISTLOCATION);
       }
     );
   }
@@ -32,7 +36,7 @@ define("Controller", ["Api", "Product", "Category", "View"], function(Api, Produ
           data.products.forEach(function(productData) {
             products.push(new Product(productData));
           });
-          View.generateProductsHTML(products);
+          View.generateProductsHTML(products, PRODUCTLISTLOCATION);
         }
       );
     }
@@ -43,7 +47,7 @@ define("Controller", ["Api", "Product", "Category", "View"], function(Api, Produ
           data.products.forEach(function(productData) {
             products.push(new Product(productData));
           });
-          View.generateProductsHTML(products);
+          View.generateProductsHTML(products, PRODUCTLISTLOCATION);
         }
       );
     }
@@ -54,7 +58,7 @@ define("Controller", ["Api", "Product", "Category", "View"], function(Api, Produ
       Api.getProductInfo(productSKU,
         function(data) {
           var product = new Product(data);
-          View.generateProductInfo(product);
+          View.generateProductInfo(product, PRODUCTDETAILSLOCATION);
         }
       );
     }

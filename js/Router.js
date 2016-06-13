@@ -5,21 +5,23 @@ define("Router", ["Controller"], function(Controller){
 
   function startRouting(){
     window.location.hash = window.location.hash || defaultRoute;
-    loadController("init");
-    setInterval(hashCheck, 100);
+    _loadController("init");
+    setInterval(_hashCheck, 100);
   }
 
-  function hashCheck(){
+  function _hashCheck(){
     if (window.location.hash != currentHash){
       if (window.location.hash.split("#")[1]) { // if a product or category url
         var urlInfo = window.location.hash.split("#")[1].split("--");
-        loadController(urlInfo[0], urlInfo[1]);
+        _loadController(urlInfo[0], urlInfo[1]);
+      } else {
+        _loadController("init");
       }
       currentHash = window.location.hash;
     }
   }
 
-  function loadController(urlType, urlId){
+  function _loadController(urlType, urlId=null){
     switch (urlType) {
       case "category":
         Controller.filterProducts(urlId);
