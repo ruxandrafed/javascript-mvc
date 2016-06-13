@@ -5,6 +5,7 @@ requirejs.config({
     'hammerjs': 'https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min',
     "Handlebars": 'https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min',
     'helpers': 'Helpers/helpers',
+    'Api': 'Api',
     'Controller': 'Controllers/Controller',
     'Product': 'Models/Product',
     'Category': 'Models/Category',
